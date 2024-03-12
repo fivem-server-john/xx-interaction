@@ -5,6 +5,7 @@ description 'Interaction'
 version '0.1'
 
 client_scripts {
+	'client/interaction.lua',
 	'client/main.lua'
 }
 
