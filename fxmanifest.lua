@@ -18,7 +18,8 @@ shared_scripts {
 }
 
 files {
-	"icons/e-icon.png"
+	"icons/e-icon.png",
+	"icons/option.png"
 }
 
 lua54 'yes'
