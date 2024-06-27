@@ -1,4 +1,4 @@
-function Interaction(identifier, coords, itype, data)
+function BaseInteraction(identifier, key, labels)
     local self = {}
 
     if type(identifier) ~= "string" then 
@@ -6,24 +6,14 @@ function Interaction(identifier, coords, itype, data)
         return false
     end
 
-    if type(coords) ~= "vector3" then 
-        print("ERROR: Tried to create an interaction with an invalid coords. Coords must be a vector3. Identifier: " .. identifier)
+    if not ValueInDict(INTERACTION_KEY, key) then
+        print("ERROR: Tried to create an interaction with an invalid key. Key must be a value from INTERACTION_KEY. Identifier: " .. identifier)
         return false
     end
-
-    if not ValueInDict(INTERACTION_TYPE, itype) then
-        print("ERROR: Tried to create an interaction with an invalid type. Type must be a value from INTERACTION_TYPE. Identifier: " .. identifier)
-        return false
-    end
-
-    data = data or {}
     
     self.identifier = identifier
-    self.coords = coords
-    self.type = itype
-
-    self.interaction_distance = data.interaction_distance or 1.5
-    self.view_distance = data.view_distance or 10.0
+    self.key = key
+    self.keyId = ConvertKeyToId(key)
 
     return self
 end
@@ -38,6 +28,12 @@ function ValueInDict(dict, value)
     return false
 end
 
-INTERACTION_TYPE = {
-    E = "e",
-}
+function ConvertKeyToId(key)
+    if key == INTERACTION_KEY.E then
+        return {0, 38}    
+    elseif key == INTERACTION_KEY.G then
+        return {0, 47}
+    else
+        return {0, 38} -- Default return E
+    end
+end

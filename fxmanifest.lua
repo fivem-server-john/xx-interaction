@@ -5,6 +5,7 @@ description 'Interaction'
 version '0.1'
 
 client_scripts {
+	'@PolyZone/client.lua',
 	'client/interaction.lua',
 	'client/main.lua'
 }
